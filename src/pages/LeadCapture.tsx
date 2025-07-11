@@ -19,13 +19,31 @@ const LeadCapture = () => {
   const navigate = useNavigate();
   const form = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log('Form submitted:', data);
-    // Store form data in localStorage for potential future use
+  const onSubmit = async (data: FormData) => {
+  console.log('Form submitted:', data);
+
+  const formData = new FormData();
+  formData.append("الاسم", data.fullName);
+  formData.append("رقم التليفون", data.phoneNumber);
+  formData.append("الإيميل", data.email);
+  formData.append("التخصص", data.specialization);
+
+  try {
+    await fetch("https://formsubmit.co/ziadstudy777@gmail.com", {
+      method: "POST",
+      body: formData,
+    });
+
+    // خزّن البيانات محليًا
     localStorage.setItem('leadData', JSON.stringify(data));
-    // Redirect to video page
+
+    // توجه لصفحة الفيديو
     navigate('/video');
-  };
+  } catch (error) {
+    alert("حدث خطأ أثناء الإرسال، برجاء المحاولة مرة أخرى.");
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 flex items-center justify-center px-4">
