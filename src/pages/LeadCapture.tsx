@@ -29,7 +29,7 @@ const LeadCapture = () => {
   formData.append("التخصص", data.specialization);
 
   try {
-    await fetch("https://formsubmit.co/ziadstudy777@gmail.com", {
+    await fetch("https://formsubmit.co/zuadzido777@gmail.com", {
       method: "POST",
       body: formData,
     });
